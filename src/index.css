@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+@layer utilities {
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  .perspective-2000 {
+    perspective: 2000px;
+  }
+  .transform-3d {
+    transform-style: preserve-3d;
+  }
+  .rotate-x-6 {
+    transform: rotateX(6deg);
+  }
+  .rotate-y-6 {
+    transform: rotateY(6deg);
+  }
+  .-rotate-y-6 {
+    transform: rotateY(-6deg);
+  }
+  .translate-z-10 {
+    transform: translateZ(10px);
+  }
+  .translate-z-20 {
+    transform: translateZ(20px);
+  }
+}
+
+.bg-grid-pattern {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(20, 184, 166, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(20, 184, 166, 0.05) 1px, transparent 1px);
+}
+
+.bg-radial-vibrant {
+  background: radial-gradient(circle at 50% 0%, rgba(20, 184, 166, 0.15) 0%, rgba(6, 182, 212, 0.08) 35%, transparent 70%);
+}
+
+/* Remove unwanted browser red wavy spelling and grammar underlines */
+::spelling-error {
+  text-decoration: none !important;
+}
+
+::grammar-error {
+  text-decoration: none !important;
+}
+
+/* Ensure medical terminology, codes, inputs and headings have clean typography */
+input, select, textarea {
+  spellcheck: false;
+}
+

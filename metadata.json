@@ -1,0 +1,6 @@
+{
+  "name": "AI Hospital Intelligence",
+  "description": "Interactive clinical healthcare platform for estimating hospital length of stay and identifying 30-day readmission risk via a deployed FastAPI service.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
