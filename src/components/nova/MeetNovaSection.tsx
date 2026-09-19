@@ -28,32 +28,34 @@ export const MeetNovaSection: React.FC<MeetNovaSectionProps> = ({
 }) => {
   const capabilities = [
     {
-      title: 'Length-of-Stay Interpretation',
-      desc: 'Understand clinical features driving continuous inpatient days estimation.',
+      title: 'Hospital Stay Guidance',
+      desc: 'Learn how the hospital stay estimate works and which factors influence the timeframe.',
       icon: Layers,
     },
     {
-      title: '30-Day Readmission Guidance',
-      desc: 'Explore diabetic medication and diagnostic factors influencing readmission risk.',
+      title: 'Readmission Risk Guidance',
+      desc: 'Understand the factors considered in the 30-day readmission assessment.',
       icon: Activity,
     },
     {
-      title: 'Conversational Voice AI',
-      desc: 'Ask questions hands-free via speech-to-text and listen to natural audio readouts.',
+      title: 'Conversational Voice & Chat',
+      desc: 'Ask questions hands-free via speech-to-text or typed messaging.',
       icon: Mic,
     },
     {
-      title: 'FastAPI Backend Insights',
-      desc: 'Learn about model inference latency, Render cold starts, and REST schemas.',
+      title: 'Platform & Service Support',
+      desc: 'Get quick guidance on completing forms, preset examples, and service status.',
       icon: Brain,
     },
   ];
 
   const quickPrompts = [
-    'Explain length-of-stay prediction.',
-    'Explain 30-day readmission prediction.',
-    'What information is required?',
-    'What does the API status mean?',
+    'What can this website help me with?',
+    'How does the hospital stay estimate work?',
+    'What is a 30-day readmission assessment?',
+    'How do I complete the information form?',
+    'Why is the service taking time to start?',
+    'What are the limitations of this application?',
   ];
 
   return (
@@ -74,8 +76,8 @@ export const MeetNovaSection: React.FC<MeetNovaSectionProps> = ({
             <div className="relative group">
               <NovaAvatar state="idle" size="xl" showStatusBadge={true} />
               <div className="absolute -bottom-2 inset-x-0 flex justify-center">
-                <span className="px-3 py-0.5 rounded-full bg-slate-900 border border-teal-400/50 text-[10px] font-mono text-teal-300 shadow-md">
-                  Digital Clinical AI • 24/7
+                <span className="px-3 py-0.5 rounded-full bg-slate-900 border border-teal-400/50 text-[10px] font-medium text-teal-300 shadow-md">
+                  Healthcare AI Guide
                 </span>
               </div>
             </div>
@@ -85,7 +87,7 @@ export const MeetNovaSection: React.FC<MeetNovaSectionProps> = ({
                 Nova
               </h3>
               <p className="text-xs text-teal-300 font-medium">
-                AI Decision-Support & Platform Guide
+                Healthcare Guide & Platform Assistant
               </p>
             </div>
 

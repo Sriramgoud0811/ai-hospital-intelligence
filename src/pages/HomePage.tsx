@@ -50,39 +50,40 @@ export const HomePage: React.FC = () => {
               {/* Pill badge */}
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-teal-500/30 bg-teal-950/40 text-teal-300 text-xs font-semibold backdrop-blur-sm">
                 <Sparkles className="w-3.5 h-3.5 text-teal-400" />
-                <span>Production Hospital Care Intelligence Platform</span>
+                <span>Modern Healthcare Intelligence</span>
               </div>
 
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white font-['Plus_Jakarta_Sans'] leading-[1.12]">
-                From Hospital Data to{' '}
+                Smarter Healthcare Insights for{' '}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 via-cyan-300 to-blue-400">
-                  Actionable Care Intelligence
+                  Better Patient Care
                 </span>
               </h1>
 
               <p className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                An interactive clinical care platform for estimating hospital length of stay and identifying 30-day patient readmission risk using a production-deployed clinical service.
+                Support clinical decisions, estimate hospital stays, and assess 30-day readmission risk through a modern healthcare intelligence platform.
               </p>
 
               {/* Action Buttons */}
               <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3.5 pt-2">
                 <Link
                   id="hero-explore-predictions-btn"
-                  to="/dashboard"
+                  to="/predict"
                   className="flex items-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-teal-500 to-cyan-600 hover:from-teal-400 hover:to-cyan-500 text-white font-semibold text-sm shadow-[0_0_20px_rgba(20,184,166,0.35)] transition transform hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
                 >
-                  <span>Open Clinical Dashboard</span>
+                  <span>Explore Healthcare Tools</span>
                   <ArrowRight className="w-4 h-4" />
                 </Link>
 
-                <Link
-                  id="hero-view-ward-btn"
-                  to="/realtime-ward"
-                  className="flex items-center gap-2 px-5 py-3.5 rounded-xl border border-slate-700 hover:border-slate-600 bg-slate-900/80 hover:bg-slate-800 text-slate-200 text-sm font-semibold transition"
+                <button
+                  type="button"
+                  id="hero-meet-nova-btn"
+                  onClick={() => openNovaChat()}
+                  className="flex items-center gap-2 px-5 py-3.5 rounded-xl border border-teal-500/40 hover:border-teal-400/60 bg-teal-950/40 hover:bg-teal-900/60 text-teal-200 text-sm font-semibold transition cursor-pointer shadow-sm"
                 >
-                  <Layers className="w-4 h-4 text-cyan-400" />
-                  <span>Interactive 3D Ward Twin</span>
-                </Link>
+                  <Sparkles className="w-4 h-4 text-teal-400" />
+                  <span>Meet Nova AI Assistant</span>
+                </button>
               </div>
 
               {/* Live Status Chip */}
@@ -109,10 +110,10 @@ export const HomePage: React.FC = () => {
                     <div className="flex items-center justify-between w-full">
                       <div className="flex items-center gap-2">
                         <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-                        <span className="text-xs font-bold text-white">3D Smart Hospital Twin</span>
+                        <span className="text-xs font-bold text-white">Hospital Care Environment</span>
                       </div>
-                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-teal-950 text-teal-300 border border-teal-800/50">
-                        Live FastAPI ML
+                      <span className="text-[10px] font-medium px-2 py-0.5 rounded bg-teal-950 text-teal-300 border border-teal-800/50">
+                        Active Monitoring
                       </span>
                     </div>
                   </div>
@@ -120,106 +121,104 @@ export const HomePage: React.FC = () => {
 
                 <div className="flex items-center justify-between pb-2 border-b border-slate-800">
                   <div className="flex items-center gap-2">
-                    <div className="w-2.5 h-2.5 rounded-full bg-rose-500/80" />
-                    <div className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
-                    <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
-                    <span className="text-[11px] font-mono text-slate-400 ml-1.5">fastapi-pipeline.service</span>
+                    <div className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
+                    <span className="text-[11px] font-medium text-slate-300 ml-1.5">Healthcare Assessment Flow</span>
                   </div>
-                  <span className="text-[10px] font-mono text-emerald-400">
-                    200 Healthy
+                  <span className="text-[10px] font-medium text-emerald-400">
+                    Service Connected
                   </span>
                 </div>
 
-                {/* Simulated Visual Pipeline Data Nodes */}
-                <div className="space-y-3 font-mono text-xs">
-                  {/* Layer 1: Patient Encounter Ingestion */}
+                {/* Simulated Visual Care Intelligence Flow */}
+                <div className="space-y-3 text-xs">
+                  {/* Step 1: Patient Information */}
                   <div className="p-3 rounded-xl bg-slate-950/80 border border-slate-800 flex items-center justify-between">
                     <div className="flex items-center gap-2.5">
-                      <div className="w-7 h-7 rounded-lg bg-teal-500/20 text-teal-300 flex items-center justify-center text-xs">
+                      <div className="w-7 h-7 rounded-lg bg-teal-500/20 text-teal-300 flex items-center justify-center text-xs font-bold">
                         1
                       </div>
                       <div>
-                        <p className="text-white text-xs font-semibold">Raw Encounter Ingestion</p>
-                        <p className="text-[10px] text-slate-400">Demographics • Prior Utilization • ICD-9</p>
+                        <p className="text-white text-xs font-semibold">Patient Visit Information</p>
+                        <p className="text-[10px] text-slate-400">Demographics • Visit History • Medical Details</p>
                       </div>
                     </div>
-                    <span className="text-[10px] text-teal-400 font-bold">13–22 raw fields</span>
+                    <span className="text-[10px] text-teal-400 font-medium">Standard Clinical Profile</span>
                   </div>
 
                   {/* Flow Arrow */}
-                  <div className="flex justify-center text-slate-600 text-xs">
-                    <span>↓ Feature Engineering & Encoding (2,359 features)</span>
+                  <div className="flex justify-center text-slate-500 text-[11px]">
+                    <span>↓ Real-Time Assessment Processing</span>
                   </div>
 
-                  {/* Layer 2: Model Inference Nodes */}
+                  {/* Step 2: Assessment Tools */}
                   <div className="grid grid-cols-2 gap-2.5">
                     <div className="p-3 rounded-xl bg-teal-950/30 border border-teal-800/40">
                       <div className="flex items-center gap-1.5 text-teal-400 text-[11px] font-semibold mb-1">
                         <Clock className="w-3.5 h-3.5" />
-                        <span>XGB Regressor</span>
+                        <span>Stay Estimate</span>
                       </div>
-                      <p className="text-[10px] text-slate-400">Target: time_in_hospital</p>
-                      <p className="text-xs text-white font-bold mt-1.5 font-mono">1 – 14 Days</p>
+                      <p className="text-[10px] text-slate-400">Expected hospital stay</p>
+                      <p className="text-xs text-white font-bold mt-1.5 font-sans">1 – 14 Days Forecast</p>
                     </div>
 
                     <div className="p-3 rounded-xl bg-cyan-950/30 border border-cyan-800/40">
                       <div className="flex items-center gap-1.5 text-cyan-400 text-[11px] font-semibold mb-1">
                         <ShieldAlert className="w-3.5 h-3.5" />
-                        <span>XGB Classifier</span>
+                        <span>Readmission Risk</span>
                       </div>
-                      <p className="text-[10px] text-slate-400">Target: readmit_30d</p>
-                      <p className="text-xs text-white font-bold mt-1.5 font-mono">Threshold Tuned</p>
+                      <p className="text-[10px] text-slate-400">30-day return risk</p>
+                      <p className="text-xs text-white font-bold mt-1.5 font-sans">Priority Care Assessment</p>
                     </div>
                   </div>
 
                   {/* Flow Arrow */}
-                  <div className="flex justify-center text-slate-600 text-xs">
-                    <span>↓ JSON Schema Output</span>
+                  <div className="flex justify-center text-slate-500 text-[11px]">
+                    <span>↓ Decision Support Summary</span>
                   </div>
 
-                  {/* Layer 3: Prediction Dashboard Output */}
+                  {/* Step 3: Decision Support Output */}
                   <div className="p-3 rounded-xl bg-slate-950/80 border border-slate-800 flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                      <span className="text-white text-xs font-semibold">Real-Time Analytical Response</span>
+                      <span className="text-white text-xs font-semibold">Actionable Care Coordination</span>
                     </div>
-                    <span className="text-[10px] text-emerald-400 font-mono">200 OK</span>
+                    <span className="text-[10px] text-emerald-400 font-medium">Ready</span>
                   </div>
                 </div>
 
                 <div className="pt-2 text-center">
                   <p className="text-[11px] text-slate-400">
-                    Direct live connection to Render FastAPI endpoint. No mocked predictions.
+                    Direct live connection to cloud healthcare services for instant clinical estimations.
                   </p>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Verified Hero Stats Grid */}
+          {/* Healthcare Platform Highlights */}
           <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4">
             <div className="p-5 rounded-2xl border border-slate-800 bg-slate-900/60 text-center">
               <span className="text-3xl font-extrabold text-white font-['Plus_Jakarta_Sans']">2</span>
-              <p className="text-xs font-semibold text-teal-400 mt-1">ML Tasks</p>
-              <p className="text-[11px] text-slate-400 mt-0.5">Regression & Classification</p>
+              <p className="text-xs font-semibold text-teal-400 mt-1">Clinical Tools</p>
+              <p className="text-[11px] text-slate-400 mt-0.5">Stay duration & readmission risk</p>
             </div>
 
             <div className="p-5 rounded-2xl border border-slate-800 bg-slate-900/60 text-center">
-              <span className="text-3xl font-extrabold text-white font-['Plus_Jakarta_Sans']">2</span>
-              <p className="text-xs font-semibold text-cyan-400 mt-1">Live Prediction Endpoints</p>
-              <p className="text-[11px] text-slate-400 mt-0.5">/length-of-stay & /readmission</p>
+              <span className="text-3xl font-extrabold text-white font-['Plus_Jakarta_Sans']">100K+</span>
+              <p className="text-xs font-semibold text-cyan-400 mt-1">Patient Encounters</p>
+              <p className="text-[11px] text-slate-400 mt-0.5">Validated clinical training data</p>
             </div>
 
             <div className="p-5 rounded-2xl border border-slate-800 bg-slate-900/60 text-center">
-              <span className="text-3xl font-extrabold text-white font-['Plus_Jakarta_Sans']">FastAPI</span>
-              <p className="text-xs font-semibold text-teal-400 mt-1">Backend Architecture</p>
-              <p className="text-[11px] text-slate-400 mt-0.5">Pydantic validation schemas</p>
+              <span className="text-3xl font-extrabold text-white font-['Plus_Jakarta_Sans']">Real-Time</span>
+              <p className="text-xs font-semibold text-teal-400 mt-1">Decision Support</p>
+              <p className="text-[11px] text-slate-400 mt-0.5">Rapid estimations for care teams</p>
             </div>
 
             <div className="p-5 rounded-2xl border border-slate-800 bg-slate-900/60 text-center">
-              <span className="text-3xl font-extrabold text-white font-['Plus_Jakarta_Sans']">Render</span>
-              <p className="text-xs font-semibold text-cyan-400 mt-1">Cloud Deployment</p>
-              <p className="text-[11px] text-slate-400 mt-0.5">Containerized Linux runtime</p>
+              <span className="text-3xl font-extrabold text-white font-['Plus_Jakarta_Sans']">Cloud</span>
+              <p className="text-xs font-semibold text-cyan-400 mt-1">Secure Service</p>
+              <p className="text-[11px] text-slate-400 mt-0.5">Reliable modern cloud platform</p>
             </div>
           </div>
         </div>
@@ -228,67 +227,57 @@ export const HomePage: React.FC = () => {
       {/* Meet Nova — Interactive AI Assistant Section */}
       <MeetNovaSection onOpenChat={openNovaChat} onOpenVoice={openNovaVoice} />
 
-      {/* Problem Section: Analytical Clinical Need */}
-      <section id="problem-section" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* What This Application Does Section */}
+      <section id="what-we-do-section" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="p-8 sm:p-10 rounded-3xl border border-slate-800 bg-slate-900/50 space-y-6">
           <div className="max-w-3xl space-y-3">
             <span className="text-xs font-semibold uppercase tracking-wider text-teal-400">
-              Operational Healthcare Need
+              Healthcare Decision Support
             </span>
             <h2 className="text-2xl sm:text-3xl font-bold text-white font-['Plus_Jakarta_Sans']">
-              Why Hospital Systems Need Machine Learning Decision Support
+              What This Application Does
             </h2>
             <p className="text-sm text-slate-300 leading-relaxed">
-              Hospital teams manage complex inpatient encounters under tight resource constraints. Analytical intelligence helps clinical administrators and operational leaders extract patterns from encounter histories.
+              Designed for doctors, nurses, hospital staff, students, and healthcare leaders to evaluate patient admission patterns and coordinate post-discharge care with confidence.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 pt-4">
-            <div className="p-5 rounded-xl border border-slate-800/80 bg-slate-950/60 space-y-2">
-              <div className="w-8 h-8 rounded-lg bg-teal-500/20 text-teal-300 flex items-center justify-center font-bold text-xs">
-                01
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
+            <div className="p-6 rounded-2xl border border-slate-800/80 bg-slate-950/60 space-y-3">
+              <div className="w-10 h-10 rounded-xl bg-teal-500/20 text-teal-300 flex items-center justify-center font-bold text-sm">
+                <Clock className="w-5 h-5" />
               </div>
-              <h3 className="text-sm font-semibold text-white">Expected Length of Stay</h3>
-              <p className="text-xs text-slate-400 leading-relaxed">
-                Anticipating bed occupancy days enables proactive discharge planning and ward coordination.
+              <h3 className="text-base font-semibold text-white">1. Estimate Hospital Stay</h3>
+              <p className="text-xs text-slate-300 leading-relaxed">
+                Helps clinical teams forecast how long a patient may need hospital care, supporting bed management and care planning.
               </p>
             </div>
 
-            <div className="p-5 rounded-xl border border-slate-800/80 bg-slate-950/60 space-y-2">
-              <div className="w-8 h-8 rounded-lg bg-cyan-500/20 text-cyan-300 flex items-center justify-center font-bold text-xs">
-                02
+            <div className="p-6 rounded-2xl border border-slate-800/80 bg-slate-950/60 space-y-3">
+              <div className="w-10 h-10 rounded-xl bg-cyan-500/20 text-cyan-300 flex items-center justify-center font-bold text-sm">
+                <ShieldAlert className="w-5 h-5" />
               </div>
-              <h3 className="text-sm font-semibold text-white">Resource Planning</h3>
-              <p className="text-xs text-slate-400 leading-relaxed">
-                Assessing staffing ratios, medication reserves, and step-down unit allocations ahead of time.
+              <h3 className="text-base font-semibold text-white">2. Assess Readmission Risk</h3>
+              <p className="text-xs text-slate-300 leading-relaxed">
+                Identifies patients who may have a higher likelihood of returning to the hospital within 30 days, assisting in discharge preparation.
               </p>
             </div>
 
-            <div className="p-5 rounded-xl border border-slate-800/80 bg-slate-950/60 space-y-2">
-              <div className="w-8 h-8 rounded-lg bg-blue-500/20 text-blue-300 flex items-center justify-center font-bold text-xs">
-                03
+            <div className="p-6 rounded-2xl border border-slate-800/80 bg-slate-950/60 space-y-3">
+              <div className="w-10 h-10 rounded-xl bg-blue-500/20 text-blue-300 flex items-center justify-center font-bold text-sm">
+                <Activity className="w-5 h-5" />
               </div>
-              <h3 className="text-sm font-semibold text-white">Follow-Up Prioritization</h3>
-              <p className="text-xs text-slate-400 leading-relaxed">
-                Flagging encounters with high statistical probability of 30-day readmission for care coordination.
-              </p>
-            </div>
-
-            <div className="p-5 rounded-xl border border-slate-800/80 bg-slate-950/60 space-y-2">
-              <div className="w-8 h-8 rounded-lg bg-indigo-500/20 text-indigo-300 flex items-center justify-center font-bold text-xs">
-                04
-              </div>
-              <h3 className="text-sm font-semibold text-white">Complexity Exploration</h3>
-              <p className="text-xs text-slate-400 leading-relaxed">
-                Evaluating how multi-morbidity diagnoses and glycemic markers correlate with inpatient duration.
+              <h3 className="text-base font-semibold text-white">3. Assist Clinical Workflows</h3>
+              <p className="text-xs text-slate-300 leading-relaxed">
+                Provides quick insights for doctors, nurses, and administrators to support daily hospital coordination and care planning.
               </p>
             </div>
           </div>
 
           <div className="p-4 rounded-xl bg-slate-950 border border-slate-800 text-xs text-slate-300 flex items-start gap-3">
-            <ShieldAlert className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
+            <ShieldCheck className="w-5 h-5 text-teal-400 shrink-0 mt-0.5" />
             <p className="leading-relaxed">
-              <strong className="text-white">Strict Analytical Scope:</strong> This project is an educational and analytical prototype. It is not a medical diagnostic or treatment system. Model outputs are mathematical estimates generated by serialized XGBoost algorithms from retrospective diabetic encounter records (1999–2008) and must never substitute for licensed medical judgment.
+              <strong className="text-white">Clinical Decision Support Notice:</strong> This application is an educational and analytical tool designed to support healthcare workflows. It does not provide medical advice, diagnosis, or treatment. All clinical decisions must be made by qualified healthcare professionals.
             </p>
           </div>
         </div>
@@ -299,13 +288,13 @@ export const HomePage: React.FC = () => {
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
           <div className="space-y-2">
             <span className="text-xs font-semibold uppercase tracking-wider text-emerald-400 font-mono">
-              Live Inpatient Operations Feed
+              Live Inpatient Operations
             </span>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white font-['Plus_Jakarta_Sans']">
-              Real-Time Hospital Telemetry & 3D Ward Twin
+              Hospital Ward Overview & Clinical Telemetry
             </h2>
             <p className="text-sm text-slate-400 max-w-2xl">
-              Inspect active bed pods, track streaming patient admissions, and evaluate readmission risk with 1-click live XGBoost inference.
+              Inspect active bed availability, track streaming patient admissions, and evaluate care needs in real time.
             </p>
           </div>
 
@@ -313,7 +302,7 @@ export const HomePage: React.FC = () => {
             to="/realtime-ward"
             className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 text-xs font-semibold transition self-start sm:self-auto"
           >
-            <span>Full Ward Command Center</span>
+            <span>Open Ward Overview</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>
@@ -328,13 +317,13 @@ export const HomePage: React.FC = () => {
       <section id="two-models-section" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="text-center max-w-2xl mx-auto space-y-3">
           <span className="text-xs font-semibold uppercase tracking-wider text-teal-400">
-            Deployed Clinical Intelligence Tools
+            Healthcare Assessment Tools
           </span>
           <h2 className="text-3xl font-extrabold text-white font-['Plus_Jakarta_Sans']">
             Two Specialized Clinical Decision Support Tools
           </h2>
           <p className="text-sm text-slate-400">
-            Targeting critical inpatient clinical operations: predicting length of stay and evaluating 30-day readmission risk based on 101,766 diabetic patient encounters.
+            Designed to support daily hospital workflows: estimating expected stay duration and assessing 30-day readmission likelihood.
           </p>
         </div>
 
@@ -347,27 +336,27 @@ export const HomePage: React.FC = () => {
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <span className="text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-full bg-teal-500/20 text-teal-300 border border-teal-500/30">
-                  Tool 1 • Inpatient Stay Duration
+                  Tool 1 • Hospital Stay Estimate
                 </span>
-                <span className="text-xs font-mono text-slate-400">/predict/length-of-stay</span>
+                <span className="text-xs text-slate-400">Bed Planning Tool</span>
               </div>
 
               <h3 className="text-2xl font-bold text-white font-['Plus_Jakarta_Sans']">
-                Hospital Length-of-Stay Estimation
+                Hospital Stay Estimate
               </h3>
 
               <p className="text-xs text-slate-300 leading-relaxed">
-                Estimates the inpatient stay duration in days based on admission route, clinical specialty, prior utilization, and primary diagnostic codes.
+                Estimate the expected number of days spent in the hospital based on the information provided.
               </p>
 
               <div className="grid grid-cols-2 gap-3 pt-2 text-xs">
                 <div className="p-3 rounded-xl bg-slate-950/80 border border-slate-800">
-                  <span className="text-slate-500 block text-[10px]">CLINICAL FOCUS</span>
-                  <span className="font-mono font-semibold text-teal-300">Inpatient Bed Planning</span>
+                  <span className="text-slate-500 block text-[10px]">PURPOSE</span>
+                  <span className="font-semibold text-teal-300">Inpatient Bed Planning</span>
                 </div>
                 <div className="p-3 rounded-xl bg-slate-950/80 border border-slate-800">
-                  <span className="text-slate-500 block text-[10px]">OUTPUT FORMAT</span>
-                  <span className="font-mono font-semibold text-white">Estimated Days (1–14d)</span>
+                  <span className="text-slate-500 block text-[10px]">ESTIMATE FORMAT</span>
+                  <span className="font-semibold text-white">Expected Days (1–14 Days)</span>
                 </div>
               </div>
             </div>
@@ -378,7 +367,7 @@ export const HomePage: React.FC = () => {
                 to="/predict/length-of-stay"
                 className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-teal-600 hover:bg-teal-500 text-white text-xs font-semibold shadow-lg shadow-teal-600/20 transition"
               >
-                <span>Calculate Length of Stay</span>
+                <span>Estimate Hospital Stay</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
@@ -394,25 +383,25 @@ export const HomePage: React.FC = () => {
                 <span className="text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
                   Tool 2 • Readmission Assessment
                 </span>
-                <span className="text-xs font-mono text-slate-400">/predict/readmission</span>
+                <span className="text-xs text-slate-400">Care Continuity Tool</span>
               </div>
 
               <h3 className="text-2xl font-bold text-white font-['Plus_Jakarta_Sans']">
-                30-Day Hospital Readmission Risk
+                30-Day Readmission Assessment
               </h3>
 
               <p className="text-xs text-slate-300 leading-relaxed">
-                Evaluates the statistical likelihood of hospital readmission within 30 days post-discharge using multi-medication and glycemic indicator features.
+                Review the system's estimated readmission assessment based on the provided information.
               </p>
 
               <div className="grid grid-cols-2 gap-3 pt-2 text-xs">
                 <div className="p-3 rounded-xl bg-slate-950/80 border border-slate-800">
-                  <span className="text-slate-500 block text-[10px]">CLINICAL FOCUS</span>
-                  <span className="font-mono font-semibold text-cyan-300">Care Continuity & Discharge</span>
+                  <span className="text-slate-500 block text-[10px]">PURPOSE</span>
+                  <span className="font-semibold text-cyan-300">Care Continuity & Discharge</span>
                 </div>
                 <div className="p-3 rounded-xl bg-slate-950/80 border border-slate-800">
-                  <span className="text-slate-500 block text-[10px]">OUTPUT FORMAT</span>
-                  <span className="font-mono font-semibold text-white">Risk Priority & Probability</span>
+                  <span className="text-slate-500 block text-[10px]">ASSESSMENT FORMAT</span>
+                  <span className="font-semibold text-white">Estimated Likelihood & Priority</span>
                 </div>
               </div>
             </div>
@@ -423,7 +412,7 @@ export const HomePage: React.FC = () => {
                 to="/predict/readmission"
                 className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white text-xs font-semibold shadow-lg shadow-cyan-600/20 transition"
               >
-                <span>Evaluate Readmission Risk</span>
+                <span>Generate Assessment</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
@@ -431,43 +420,54 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* Technology Stack Grid */}
+      {/* Technology Behind the Platform */}
       <section id="tech-stack-section" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="p-8 rounded-3xl border border-slate-800 bg-slate-900/40 space-y-6">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
               <span className="text-xs font-semibold uppercase tracking-wider text-teal-400">
-                End-to-End Engineering
+                Secure & Reliable
               </span>
               <h2 className="text-xl sm:text-2xl font-bold text-white font-['Plus_Jakarta_Sans'] mt-1">
-                Hospital System Architecture & Clinical Backend
+                Technology Behind the Platform
               </h2>
+              <p className="text-xs text-slate-400 mt-1">
+                Built with modern cloud services, secure clinical data architecture, and intuitive design.
+              </p>
             </div>
             <Link
               to="/architecture"
               className="text-xs font-semibold text-cyan-400 hover:underline flex items-center gap-1 self-start md:self-auto"
             >
-              <span>Explore System Architecture</span>
+              <span>Explore Platform Architecture</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-            <div className="p-4 rounded-xl bg-slate-950/60 border border-slate-800 text-xs space-y-1">
-              <span className="font-semibold text-white block">Clinical Frontend</span>
-              <p className="text-slate-400">React 19, TypeScript, Vite, Tailwind CSS</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="p-5 rounded-xl bg-slate-950/60 border border-slate-800 text-xs space-y-1.5">
+              <span className="font-semibold text-white block">Intuitive Clinical Interface</span>
+              <p className="text-slate-400 leading-relaxed">
+                High-performance web interface designed for fast, intuitive clinical workflows across devices.
+              </p>
             </div>
-            <div className="p-4 rounded-xl bg-slate-950/60 border border-slate-800 text-xs space-y-1">
-              <span className="font-semibold text-white block">Backend Service</span>
-              <p className="text-slate-400">FastAPI, Pydantic Schema Validation, Uvicorn</p>
+            <div className="p-5 rounded-xl bg-slate-950/60 border border-slate-800 text-xs space-y-1.5">
+              <span className="font-semibold text-white block">Cloud Healthcare Service</span>
+              <p className="text-slate-400 leading-relaxed">
+                Cloud-powered predictive tools that process visit details in real time with high availability.
+              </p>
             </div>
-            <div className="p-4 rounded-xl bg-slate-950/60 border border-slate-800 text-xs space-y-1">
-              <span className="font-semibold text-white block">Decision Engine</span>
-              <p className="text-slate-400">High-Performance Clinical Pipeline</p>
+            <div className="p-5 rounded-xl bg-slate-950/60 border border-slate-800 text-xs space-y-1.5">
+              <span className="font-semibold text-white block">Benchmarked Data</span>
+              <p className="text-slate-400 leading-relaxed">
+                Calibrated against over 100,000 retrospective diabetic patient records for reliable patterns.
+              </p>
             </div>
-            <div className="p-4 rounded-xl bg-slate-950/60 border border-slate-800 text-xs space-y-1">
-              <span className="font-semibold text-white block">Infrastructure</span>
-              <p className="text-slate-400">Render Cloud, Docker Container, REST API</p>
+            <div className="p-5 rounded-xl bg-slate-950/60 border border-slate-800 text-xs space-y-1.5">
+              <span className="font-semibold text-white block">Decision-Support Focus</span>
+              <p className="text-slate-400 leading-relaxed">
+                Reliable data handling focused on educational decision support and care team assistance.
+              </p>
             </div>
           </div>
         </div>
@@ -477,25 +477,25 @@ export const HomePage: React.FC = () => {
       <section id="bottom-cta" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="p-10 rounded-3xl bg-gradient-to-r from-teal-950/80 via-slate-900 to-cyan-950/80 border border-teal-500/30 text-center space-y-5 shadow-2xl">
           <h2 className="text-2xl sm:text-3xl font-bold text-white font-['Plus_Jakarta_Sans']">
-            Ready to test live patient encounter evaluations?
+            Ready to explore healthcare decision support?
           </h2>
           <p className="text-sm text-slate-300 max-w-xl mx-auto">
-            Experience our dynamic clinical dashboard with validated presets or enter custom patient encounter features directly.
+            Try estimating expected stay durations or assess 30-day readmission likelihood with our clean, interactive tools.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
             <Link
               id="cta-launch-studio-bottom"
-              to="/dashboard"
+              to="/predict/length-of-stay"
               className="px-6 py-3 rounded-xl bg-gradient-to-r from-teal-500 to-cyan-600 hover:from-teal-400 hover:to-cyan-500 text-white font-semibold text-xs shadow-lg transition"
             >
-              Open Clinical Dashboard
+              Estimate Hospital Stay
             </Link>
             <Link
               id="cta-explore-ward-bottom"
-              to="/realtime-ward"
+              to="/predict/readmission"
               className="px-6 py-3 rounded-xl border border-slate-700 bg-slate-900/80 text-slate-300 hover:text-white text-xs font-semibold transition"
             >
-              View 3D Ward Digital Twin
+              30-Day Readmission Assessment
             </Link>
           </div>
         </div>

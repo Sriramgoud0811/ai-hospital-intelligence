@@ -129,8 +129,8 @@ export const COMMON_ICD9_CODES = [
  */
 export const SAMPLE_REGRESSION_CASES: { name: string; description: string; data: RegressionRequest }[] = [
   {
-    name: 'Clinical Benchmark (Senior with Cardiovascular & Diabetes)',
-    description: 'Male 50-60, 1 prior inpatient stay, emergency admission, primary diabetes diagnosis.',
+    name: 'Moderate Complexity Patient',
+    description: 'Adult patient (50–60) with diabetes and 1 prior hospital stay in the past year.',
     data: {
       age: '[50-60)',
       gender: 'Male',
@@ -148,8 +148,8 @@ export const SAMPLE_REGRESSION_CASES: { name: string; description: string; data:
     },
   },
   {
-    name: 'Elderly Heart Failure Case (High Complexity)',
-    description: 'Female 70-80, Cardiology specialty, Medicare payer, 2 prior emergency visits.',
+    name: 'High Need / Complex Care Patient',
+    description: 'Elderly patient (70–80) with cardiology care, multiple prior admissions, and higher care needs.',
     data: {
       age: '[70-80)',
       gender: 'Female',
@@ -167,8 +167,8 @@ export const SAMPLE_REGRESSION_CASES: { name: string; description: string; data:
     },
   },
   {
-    name: 'Elective Surgery Case (Low Prior Utilization)',
-    description: 'Male 40-50, Elective admission with Physician referral, zero prior admissions.',
+    name: 'Low Risk / Short Stay Patient',
+    description: 'Adult patient (40–50) with planned elective admission and zero prior hospital admissions.',
     data: {
       age: '[40-50)',
       gender: 'Male',
@@ -189,8 +189,8 @@ export const SAMPLE_REGRESSION_CASES: { name: string; description: string; data:
 
 export const SAMPLE_CLASSIFICATION_CASES: { name: string; description: string; data: ClassificationRequest }[] = [
   {
-    name: 'High-Risk Readmission Profile (Heavy Prior Utilization)',
-    description: 'Female 70-80, 5 days stayed, elevated glucose, insulin adjustment, 2 prior inpatient visits.',
+    name: 'High Need / Complex Care Patient',
+    description: 'Elderly patient with multiple prior admissions, adjusted insulin therapy, and complex care needs.',
     data: {
       age: '[70-80)',
       gender: 'Female',
@@ -217,8 +217,8 @@ export const SAMPLE_CLASSIFICATION_CASES: { name: string; description: string; d
     },
   },
   {
-    name: 'Standard Encounter Profile (Moderate Complexity)',
-    description: 'Male 50-60, 3 days stayed, normal glycemic controls, steady insulin management.',
+    name: 'Moderate Complexity Patient',
+    description: 'Adult patient with steady medications, standard hospital stay, and 1 prior admission.',
     data: {
       age: '[50-60)',
       gender: 'Male',
@@ -245,8 +245,8 @@ export const SAMPLE_CLASSIFICATION_CASES: { name: string; description: string; d
     },
   },
   {
-    name: 'Low-Risk Outpatient Discharged Profile',
-    description: 'Female 30-40, 2 days stayed, no prior inpatient history, stable medication.',
+    name: 'Low Risk / Short Stay Patient',
+    description: 'Younger patient with stable medications, short stay, and zero prior hospital admissions.',
     data: {
       age: '[30-40)',
       gender: 'Female',

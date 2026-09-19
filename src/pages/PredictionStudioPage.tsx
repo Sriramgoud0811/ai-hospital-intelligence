@@ -101,17 +101,17 @@ export const PredictionStudioPage: React.FC<PredictionStudioPageProps> = ({ init
       saveSessionHistory('regression', payload, response);
       toast({
         type: 'success',
-        title: 'Prediction Generated',
-        message: `Estimated length of stay: ${response.prediction.toFixed(2)} days (${elapsed}ms).`,
+        title: 'Stay Estimate Generated',
+        message: `Estimated hospital stay: ${response.prediction.toFixed(1)} days.`,
       });
     } catch (err: any) {
       const errorObj: ApiError = err.isAxiosError || err.fieldErrors
         ? err
-        : { message: err.message || 'Failed to generate length-of-stay prediction.' };
+        : { message: err.message || 'The service took longer than expected. Please try again.' };
       setRegError(errorObj);
       toast({
         type: 'error',
-        title: errorObj.isColdStart ? 'Cold Start In Progress' : 'Prediction Service Error',
+        title: errorObj.isColdStart ? 'Service Starting Up' : 'Service Notice',
         message: errorObj.message,
       });
     } finally {
@@ -134,17 +134,17 @@ export const PredictionStudioPage: React.FC<PredictionStudioPageProps> = ({ init
       saveSessionHistory('classification', payload, response);
       toast({
         type: 'success',
-        title: 'Risk Evaluation Generated',
-        message: `30-Day Readmission Probability: ${(response.probability * 100).toFixed(2)}% (${elapsed}ms).`,
+        title: 'Assessment Generated',
+        message: `Estimated 30-day readmission likelihood: ${(response.probability * 100).toFixed(1)}%.`,
       });
     } catch (err: any) {
       const errorObj: ApiError = err.isAxiosError || err.fieldErrors
         ? err
-        : { message: err.message || 'Failed to evaluate 30-day readmission risk.' };
+        : { message: err.message || 'The service took longer than expected. Please try again.' };
       setClsError(errorObj);
       toast({
         type: 'error',
-        title: errorObj.isColdStart ? 'Cold Start In Progress' : 'Prediction Service Error',
+        title: errorObj.isColdStart ? 'Service Starting Up' : 'Service Notice',
         message: errorObj.message,
       });
     } finally {
@@ -159,13 +159,13 @@ export const PredictionStudioPage: React.FC<PredictionStudioPageProps> = ({ init
         <div>
           <div className="flex items-center gap-2 text-teal-400 text-xs font-semibold uppercase tracking-wider mb-1">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>Interactive Machine Learning Studio</span>
+            <span>Healthcare Decision Support</span>
           </div>
           <h1 className="text-2xl sm:text-3xl font-extrabold text-white font-['Plus_Jakarta_Sans']">
-            Prediction Studio Workspace
+            Healthcare Assessment Tools
           </h1>
           <p className="text-xs sm:text-sm text-slate-400 mt-1 max-w-2xl">
-            Query deployed XGBoost models in real-time. Test customized encounter variables, run clinical test presets, and inspect raw inference outputs.
+            Enter patient visit details to estimate expected hospital stay duration or evaluate 30-day readmission likelihood to support discharge planning.
           </p>
         </div>
 
@@ -174,7 +174,7 @@ export const PredictionStudioPage: React.FC<PredictionStudioPageProps> = ({ init
         </div>
       </div>
 
-      {/* Model Selection Tabs */}
+      {/* Tool Selection Tabs */}
       <div className="flex border-b border-slate-800 gap-2">
         <button
           id="tab-btn-length-of-stay"
@@ -186,9 +186,9 @@ export const PredictionStudioPage: React.FC<PredictionStudioPageProps> = ({ init
           }`}
         >
           <Clock className="w-4 h-4" />
-          <span>Length-of-Stay Estimator</span>
-          <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-teal-950 text-teal-400 border border-teal-800/60 hidden sm:inline">
-            Inpatient Days
+          <span>Hospital Stay Estimate</span>
+          <span className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-teal-950 text-teal-400 border border-teal-800/60 hidden sm:inline">
+            Bed Planning
           </span>
         </button>
 
@@ -202,33 +202,35 @@ export const PredictionStudioPage: React.FC<PredictionStudioPageProps> = ({ init
           }`}
         >
           <ShieldAlert className="w-4 h-4" />
-          <span>30-Day Readmission Risk</span>
-          <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-cyan-950 text-cyan-400 border border-cyan-800/60 hidden sm:inline">
-            Risk Score
+          <span>30-Day Readmission Assessment</span>
+          <span className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-cyan-950 text-cyan-400 border border-cyan-800/60 hidden sm:inline">
+            Care Continuity
           </span>
         </button>
       </div>
 
       {/* Main Studio Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        {/* Left Column: Model Form */}
+        {/* Left Column: Form */}
         <div className="lg:col-span-7 space-y-6">
           <div className="p-6 rounded-2xl border border-slate-800 bg-slate-900/70 backdrop-blur-xl shadow-lg">
             <div className="pb-4 mb-4 border-b border-slate-800 flex items-center justify-between">
               <div>
                 <h2 className="text-base font-bold text-white font-['Plus_Jakarta_Sans']">
                   {activeTab === 'length-of-stay'
-                    ? 'Patient Encounter Parameters'
-                    : 'Readmission Clinical Indicators'}
+                    ? 'Patient Visit Details'
+                    : 'Readmission Assessment Details'}
                 </h2>
                 <p className="text-[11px] text-slate-400">
                   {activeTab === 'length-of-stay'
-                    ? 'Targeting time_in_hospital via 13 input features'
-                    : 'Targeting target_readmit_30d via 22 multi-modal features'}
+                    ? 'Provide admission, laboratory, and specialty details'
+                    : 'Provide admission records, prior visits, and medication factors'}
                 </p>
               </div>
 
-              <span className="text-[11px] font-mono text-cyan-400">FastAPI POST</span>
+              <span className="text-[11px] font-medium text-teal-400 px-2.5 py-1 rounded-full bg-teal-950/60 border border-teal-800/40">
+                Secure Cloud Tool
+              </span>
             </div>
 
             {activeTab === 'length-of-stay' ? (
@@ -249,7 +251,7 @@ export const PredictionStudioPage: React.FC<PredictionStudioPageProps> = ({ init
           </div>
         </div>
 
-        {/* Right Column: Live Prediction Results & Guidance */}
+        {/* Right Column: Results & Guidance */}
         <div className="lg:col-span-5 space-y-6 lg:sticky lg:top-24">
           {activeTab === 'length-of-stay' ? (
             regResult && regInputs ? (
@@ -269,16 +271,16 @@ export const PredictionStudioPage: React.FC<PredictionStudioPageProps> = ({ init
                   <Clock className="w-6 h-6" />
                 </div>
                 <div className="space-y-1">
-                  <h3 className="text-sm font-semibold text-white">Awaiting Length-of-Stay Query</h3>
+                  <h3 className="text-sm font-semibold text-white">Awaiting Stay Estimate Request</h3>
                   <p className="text-xs text-slate-400 leading-relaxed max-w-sm mx-auto">
-                    Fill out the patient encounter attributes or select one of the clinical benchmark presets, then click <strong>Estimate Length of Stay</strong>.
+                    Enter patient visit details or select an example preset to estimate the expected length of hospital stay.
                   </p>
                 </div>
-                <div className="p-3 rounded-xl bg-slate-950/60 border border-slate-800 text-[11px] text-slate-400 text-left space-y-1.5">
-                  <span className="font-semibold text-teal-300 block">Expected Model Output:</span>
-                  <p>• Estimated hospital stay clipped between 1 and 14 days</p>
-                  <p>• Full FastAPI response latency and schema representation</p>
-                  <p>• Visual encounter stay distribution placement</p>
+                <div className="p-3.5 rounded-xl bg-slate-950/60 border border-slate-800 text-[11px] text-slate-400 text-left space-y-1.5">
+                  <span className="font-semibold text-teal-300 block">Assessment Overview:</span>
+                  <p>• Estimated hospital stay duration (1 to 14 days)</p>
+                  <p>• Visual hospital stay distribution comparison</p>
+                  <p>• Key factors supporting ward bed planning</p>
                 </div>
               </div>
             )
@@ -299,16 +301,16 @@ export const PredictionStudioPage: React.FC<PredictionStudioPageProps> = ({ init
                 <ShieldAlert className="w-6 h-6" />
               </div>
               <div className="space-y-1">
-                <h3 className="text-sm font-semibold text-white">Awaiting 30-Day Readmission Query</h3>
+                <h3 className="text-sm font-semibold text-white">Awaiting Readmission Assessment</h3>
                 <p className="text-xs text-slate-400 leading-relaxed max-w-sm mx-auto">
-                  Provide encounter features, inpatient history, and glycemic markers, then click <strong>Evaluate 30-Day Readmission Risk</strong>.
+                  Enter patient visit details, prior visit history, and medications to generate a 30-day readmission assessment.
                 </p>
               </div>
-              <div className="p-3 rounded-xl bg-slate-950/60 border border-slate-800 text-[11px] text-slate-400 text-left space-y-1.5">
-                <span className="font-semibold text-cyan-300 block">Expected Model Output:</span>
-                <p>• Probability score (0.00% to 100.00%)</p>
-                <p>• Binary risk class (0: No risk, 1: Risk identified)</p>
-                <p>• Comparison against the model's tuned decision threshold</p>
+              <div className="p-3.5 rounded-xl bg-slate-950/60 border border-slate-800 text-[11px] text-slate-400 text-left space-y-1.5">
+                <span className="font-semibold text-cyan-300 block">Assessment Overview:</span>
+                <p>• Estimated 30-day readmission likelihood</p>
+                <p>• Priority classification for discharge planning</p>
+                <p>• Actionable follow-up recommendations for care teams</p>
               </div>
             </div>
           )}
@@ -317,10 +319,10 @@ export const PredictionStudioPage: React.FC<PredictionStudioPageProps> = ({ init
           <div className="p-4 rounded-xl border border-slate-800 bg-slate-900/40 text-xs text-slate-400 space-y-2">
             <div className="flex items-center gap-2 font-semibold text-slate-300">
               <Info className="w-4 h-4 text-teal-400" />
-              <span>Production Model Notice</span>
+              <span>Service Connection Notice</span>
             </div>
             <p className="leading-relaxed">
-              Every inference request is sent directly to the FastAPI server on Render. If the server has been idle, the initial response may require up to 45 seconds to initialize.
+              Predictions are processed securely by our cloud healthcare service. If the service has been resting, the initial request may take up to 45 seconds to respond.
             </p>
           </div>
 

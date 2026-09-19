@@ -41,7 +41,7 @@ export const RealTimeWardPage: React.FC = () => {
               </h1>
 
               <p className="text-sm sm:text-base text-slate-300 leading-relaxed max-w-2xl">
-                Monitor incoming diabetic inpatient admissions, visualize bed capacity across critical wards in 3D perspective, and trigger live XGBoost inference directly against our deployed Render API.
+                Monitor incoming diabetic inpatient admissions, visualize bed capacity across critical wards in 3D perspective, and trigger live clinical risk evaluations directly against our hospital backend.
               </p>
 
               <div className="flex flex-wrap gap-4 pt-2 text-xs font-mono text-slate-400">
@@ -51,7 +51,7 @@ export const RealTimeWardPage: React.FC = () => {
                 </div>
                 <div className="flex items-center gap-1.5">
                   <Activity className="w-3.5 h-3.5 text-teal-400" />
-                  <span>XGBoost Classifier Threshold: 0.12</span>
+                  <span>Clinical Attention Threshold: 12%</span>
                 </div>
               </div>
             </div>

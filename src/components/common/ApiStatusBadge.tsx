@@ -93,6 +93,23 @@ export const ApiStatusBadge: React.FC<ApiStatusBadgeProps> = ({ compact = false 
     }
   };
 
+  const getStatusLabel = () => {
+    switch (status) {
+      case 'Healthy':
+        return 'Service Ready';
+      case 'Checking':
+        return 'Checking Service Status...';
+      case 'Waking Up':
+        return retryAttempt > 0 ? `Service Starting Up (${retryAttempt}/3)` : 'Service Starting Up';
+      case 'Unhealthy':
+        return 'Service Issue Detected';
+      case 'Unavailable':
+      case 'Request Failed':
+      default:
+        return 'Service Unavailable';
+    }
+  };
+
   const getStatusTextColor = () => {
     switch (status) {
       case 'Healthy':
@@ -114,9 +131,9 @@ export const ApiStatusBadge: React.FC<ApiStatusBadgeProps> = ({ compact = false 
     ? lastChecked.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' })
     : 'Not checked yet';
 
-  const tooltipText = `API Status: ${status}${
+  const tooltipText = `System Status: ${getStatusLabel()}${
     lastChecked ? ` • Last checked: ${formattedTime}` : ''
-  }${retryAttempt > 0 ? ` • Retry attempt ${retryAttempt}/3` : ''}`;
+  }${retryAttempt > 0 ? ` • Attempt ${retryAttempt}/3` : ''}`;
 
   if (compact) {
     return (
@@ -128,23 +145,16 @@ export const ApiStatusBadge: React.FC<ApiStatusBadgeProps> = ({ compact = false 
         aria-live="polite"
       >
         <span className={`w-2.5 h-2.5 rounded-full shrink-0 ${getStatusDotColor()}`} />
-        <span className="text-slate-300 text-xs hidden sm:inline">API Status:</span>
-        <span className={getStatusTextColor()}>
-          {status === 'Checking' && 'Checking...'}
-          {status === 'Waking Up' && (retryAttempt > 0 ? `Waking Up (${retryAttempt}/3)` : 'Waking Up')}
-          {status === 'Healthy' && 'Healthy'}
-          {status === 'Unhealthy' && 'Unhealthy'}
-          {status === 'Unavailable' && 'Unavailable'}
-          {status === 'Request Failed' && 'Request Failed'}
-        </span>
+        <span className="text-slate-300 text-xs hidden sm:inline">Service:</span>
+        <span className={getStatusTextColor()}>{getStatusLabel()}</span>
 
         <button
           id="btn-retry-health"
           onClick={performCheck}
           disabled={isRefreshing}
           className="ml-1 p-1 text-slate-400 hover:text-white rounded-md hover:bg-slate-800 transition"
-          aria-label="Retry API Health Check"
-          title="Retry Health Check"
+          aria-label="Retry Service Health Check"
+          title="Retry Connection"
         >
           <RefreshCw className={`w-3 h-3 ${isRefreshing ? 'animate-spin text-cyan-400' : ''}`} />
         </button>
@@ -163,19 +173,19 @@ export const ApiStatusBadge: React.FC<ApiStatusBadgeProps> = ({ compact = false 
           <span className={`w-3 h-3 rounded-full shrink-0 ${getStatusDotColor()}`} />
           <div>
             <div className="flex items-center gap-2">
-              <span className="text-xs font-semibold text-slate-200">API Status:</span>
-              <span className={`text-xs ${getStatusTextColor()}`}>{status}</span>
+              <span className="text-xs font-semibold text-slate-200">Application Service:</span>
+              <span className={`text-xs ${getStatusTextColor()}`}>{getStatusLabel()}</span>
             </div>
             <p className="text-[11px] text-slate-400 mt-0.5">
-              {status === 'Healthy' && 'All prediction services and models are loaded and operational.'}
-              {status === 'Checking' && 'Checking FastAPI backend on Render...'}
+              {status === 'Healthy' && 'Healthcare decision support tools are ready and operational.'}
+              {status === 'Checking' && 'Checking connection to cloud services...'}
               {status === 'Waking Up' &&
-                'Prediction service is waking up. This may take a few moments as Render loads model artifacts.'}
-              {status === 'Unhealthy' && 'Backend returned non-healthy state or model artifacts failed to load.'}
+                'Service starting up. Please allow a moment as the cloud service prepares.'}
+              {status === 'Unhealthy' && 'The assessment service encountered an unexpected response. Please retry.'}
               {status === 'Unavailable' &&
-                'Backend is temporarily unavailable or in deep cold start. Click Retry to re-connect.'}
+                'The assessment service is temporarily unavailable. Please try again shortly.'}
               {status === 'Request Failed' &&
-                'Network connection failed. Inspect developer diagnostics below.'}
+                'Unable to connect to the cloud service. Please check your connection and try again.'}
             </p>
           </div>
         </div>
@@ -187,11 +197,11 @@ export const ApiStatusBadge: React.FC<ApiStatusBadgeProps> = ({ compact = false 
           className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white border border-slate-700/60 transition shadow-sm font-medium"
         >
           <RefreshCw className={`w-3.5 h-3.5 ${isRefreshing ? 'animate-spin text-cyan-400' : ''}`} />
-          <span>Retry</span>
+          <span>Check Connection</span>
         </button>
       </div>
 
-      {/* Model indicators and timestamp row */}
+      {/* Tool indicators and timestamp row */}
       <div className="pt-2 border-t border-slate-800/80 flex flex-wrap items-center justify-between text-[11px] text-slate-400 gap-2">
         <div className="flex flex-wrap items-center gap-3">
           <span className="flex items-center gap-1.5">
@@ -200,7 +210,7 @@ export const ApiStatusBadge: React.FC<ApiStatusBadgeProps> = ({ compact = false 
                 healthData?.regression_loaded ? 'bg-emerald-400' : 'bg-slate-600'
               }`}
             />
-            <span>Length of Stay (XGBoost)</span>
+            <span>Hospital Stay Estimate</span>
           </span>
           <span className="flex items-center gap-1.5">
             <span
@@ -208,7 +218,7 @@ export const ApiStatusBadge: React.FC<ApiStatusBadgeProps> = ({ compact = false 
                 healthData?.classification_loaded ? 'bg-emerald-400' : 'bg-slate-600'
               }`}
             />
-            <span>Readmission Risk (Classifier)</span>
+            <span>30-Day Readmission Assessment</span>
           </span>
         </div>
 
@@ -220,7 +230,7 @@ export const ApiStatusBadge: React.FC<ApiStatusBadgeProps> = ({ compact = false 
         )}
       </div>
 
-      {/* Expandable Developer Section */}
+      {/* Expandable Technical Details */}
       <div className="pt-2 border-t border-slate-800/60">
         <button
           id="btn-toggle-dev-health-details"
@@ -229,7 +239,7 @@ export const ApiStatusBadge: React.FC<ApiStatusBadgeProps> = ({ compact = false 
         >
           <span className="flex items-center gap-1.5">
             <Terminal className="w-3.5 h-3.5 text-cyan-400" />
-            <span>Technical Developer Diagnostics</span>
+            <span>Connection & Cloud Service Details</span>
           </span>
           {showTechDetails ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
         </button>

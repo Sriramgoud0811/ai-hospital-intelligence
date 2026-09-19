@@ -378,7 +378,7 @@ export const RealTimeCommandCenter: React.FC = () => {
 
       toast({
         type: result.prediction === 1 ? 'warning' : 'success',
-        title: `XGBoost Triage Evaluated (${duration}ms)`,
+        title: `Patient Risk Evaluated (${duration}ms)`,
         message: `${encounter.patientInitials}: ${(result.probability * 100).toFixed(1)}% Readmission Risk (${result.prediction === 1 ? 'High Risk' : 'Low Risk'})`,
       });
     } catch (err: any) {
@@ -453,22 +453,22 @@ export const RealTimeCommandCenter: React.FC = () => {
             <span className="text-2xl sm:text-3xl font-bold text-white font-mono">4.3</span>
             <span className="text-[11px] text-cyan-400 font-semibold">Days Inpatient</span>
           </div>
-          <p className="text-[10px] text-slate-400 mt-2">Continuous XGBoost prediction range</p>
+          <p className="text-[10px] text-slate-400 mt-2">Clinical length of stay projection</p>
         </div>
 
         {/* Metric 4 */}
         <div className="p-4 sm:p-5 rounded-2xl border border-emerald-500/30 bg-emerald-950/20 backdrop-blur-xl shadow-lg relative overflow-hidden group hover:border-emerald-500/50 transition">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-emerald-300">FastAPI ML Telemetry</span>
+            <span className="text-xs font-semibold text-emerald-300">Clinical Evaluation Engine</span>
             <div className="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
               <Zap className="w-4 h-4" />
             </div>
           </div>
           <div className="mt-2 flex items-baseline gap-2">
             <span className="text-2xl sm:text-3xl font-bold text-white font-mono">~160ms</span>
-            <span className="text-[11px] text-emerald-400 font-semibold font-mono">200 OK</span>
+            <span className="text-[11px] text-emerald-400 font-semibold font-mono">Online</span>
           </div>
-          <p className="text-[10px] text-slate-400 mt-2">Live Render containerized inference</p>
+          <p className="text-[10px] text-slate-400 mt-2">Live responsive service</p>
         </div>
       </div>
 
@@ -483,7 +483,7 @@ export const RealTimeCommandCenter: React.FC = () => {
                 <span>3D Interactive Ward Digital Twin</span>
               </h3>
               <p className="text-xs text-slate-400">
-                Click any hospital bed pod to inspect clinical indicators or trigger live XGBoost evaluation.
+                Click any hospital bed pod to inspect clinical indicators or trigger live risk assessment.
               </p>
             </div>
 
@@ -643,7 +643,7 @@ export const RealTimeCommandCenter: React.FC = () => {
                 <span>Live Streaming Admissions</span>
               </h3>
               <p className="text-xs text-slate-400">
-                Real-time diabetic admissions queue with live XGBoost evaluation.
+                Real-time diabetic admissions queue with clinical risk assessment.
               </p>
             </div>
 
@@ -745,17 +745,17 @@ export const RealTimeCommandCenter: React.FC = () => {
                       <button
                         onClick={() => handleEvaluateEncounter(enc)}
                         disabled={isEvaluating}
-                        className="w-full py-2 rounded-xl bg-gradient-to-r from-teal-500 to-cyan-600 hover:from-teal-400 hover:to-cyan-500 text-white font-semibold text-xs shadow-md shadow-teal-500/20 transition flex items-center justify-center gap-2 disabled:opacity-50"
+                        className="w-full py-2 rounded-xl bg-gradient-to-r from-teal-500 to-cyan-600 hover:from-teal-400 hover:to-cyan-500 text-white font-semibold text-xs shadow-md shadow-teal-500/20 transition flex items-center justify-center gap-2 disabled:opacity-50 cursor-pointer"
                       >
                         {isEvaluating ? (
                           <>
                             <RefreshCw className="w-3.5 h-3.5 animate-spin" />
-                            <span>Calling FastAPI on Render...</span>
+                            <span>Evaluating clinical indicators...</span>
                           </>
                         ) : (
                           <>
                             <Zap className="w-3.5 h-3.5 text-yellow-300" />
-                            <span>Run Live XGBoost Triage Prediction</span>
+                            <span>Run Live Risk Assessment</span>
                           </>
                         )}
                       </button>

@@ -78,7 +78,7 @@ export const ClinicalTeamSection: React.FC = () => {
         'Medication Reconciliation & Follow-Up Scheduling',
       ],
       quote:
-        'When the XGBoost classifier highlights a probability over the 0.12 cutoff, we immediately trigger a specialized discharge bundle including 48-hour outpatient nurse contact and home insulin verification.',
+        'When the clinical risk assessment highlights an elevated readmission probability, we immediately trigger a specialized discharge bundle including 48-hour outpatient nurse contact and home insulin verification.',
       modelUsageStat: '1,420+ Readmission Interventions Guided',
     },
   ];
@@ -103,7 +103,7 @@ export const ClinicalTeamSection: React.FC = () => {
             Physician & Nursing Leadership
           </h2>
           <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
-            Real healthcare professionals collaborating with deployed AI models. Learn how physicians and clinical nurses use XGBoost probability scores to protect high-risk diabetic patients.
+            Real healthcare professionals collaborating with clinical intelligence tools. Learn how attending physicians and clinical nurses use risk assessment scores to protect high-risk diabetic patients.
           </p>
         </div>
 

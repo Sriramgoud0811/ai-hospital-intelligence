@@ -145,7 +145,7 @@ export const RegressionForm: React.FC<RegressionFormProps> = ({
       <div className="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 flex flex-wrap items-center justify-between gap-2.5">
         <div className="flex items-center gap-2 text-xs text-slate-300 font-medium">
           <Sparkles className="w-4 h-4 text-teal-400 shrink-0" />
-          <span>Clinical Test Presets:</span>
+          <span>Load Example Patient:</span>
         </div>
         <div className="flex flex-wrap items-center gap-1.5">
           {SAMPLE_REGRESSION_CASES.map((sample, idx) => (
@@ -156,17 +156,17 @@ export const RegressionForm: React.FC<RegressionFormProps> = ({
               className="text-[11px] font-medium px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700/60 transition"
               title={sample.description}
             >
-              Preset {idx + 1}: {sample.name.split(' ')[0]}
+              {sample.name}
             </button>
           ))}
           <button
             type="button"
             onClick={handleReset}
             className="text-[11px] font-medium px-2.5 py-1 rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800/80 transition flex items-center gap-1"
-            title="Reset form fields"
+            title="Clear all fields"
           >
             <RotateCcw className="w-3 h-3" />
-            Reset
+            Clear Form
           </button>
         </div>
       </div>
@@ -175,14 +175,14 @@ export const RegressionForm: React.FC<RegressionFormProps> = ({
       <div className="p-4 rounded-xl border border-slate-800 bg-slate-900/50 space-y-4">
         <div className="flex items-center gap-2 pb-2 border-b border-slate-800 text-sm font-semibold text-teal-300">
           <User className="w-4 h-4" />
-          <h3>1. Patient Demographics</h3>
+          <h3>1. Patient Details</h3>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           {/* Age */}
           <div>
             <label htmlFor="reg-age" className="block text-xs font-medium text-slate-300 mb-1.5">
-              Age Bracket <span className="text-teal-400">*</span>
+              Age Group <span className="text-teal-400">*</span>
             </label>
             <select
               id="reg-age"
@@ -232,7 +232,7 @@ export const RegressionForm: React.FC<RegressionFormProps> = ({
             >
               {RACE_OPTIONS.map((opt) => (
                 <option key={opt} value={opt}>
-                  {opt === '?' ? '? (Unknown / Unreported)' : opt}
+                  {opt === '?' ? 'Not Specified' : opt}
                 </option>
               ))}
             </select>
@@ -245,14 +245,14 @@ export const RegressionForm: React.FC<RegressionFormProps> = ({
       <div className="p-4 rounded-xl border border-slate-800 bg-slate-900/50 space-y-4">
         <div className="flex items-center gap-2 pb-2 border-b border-slate-800 text-sm font-semibold text-teal-300">
           <Building2 className="w-4 h-4" />
-          <h3>2. Admission Information</h3>
+          <h3>2. Admission & Hospital Details</h3>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {/* Admission Type ID */}
+          {/* Admission Type */}
           <div>
             <label htmlFor="reg-admission-type" className="block text-xs font-medium text-slate-300 mb-1.5">
-              Admission Type ID <span className="text-teal-400">*</span>
+              How was the patient admitted? <span className="text-teal-400">*</span>
             </label>
             <select
               id="reg-admission-type"
@@ -262,7 +262,7 @@ export const RegressionForm: React.FC<RegressionFormProps> = ({
             >
               {ADMISSION_TYPE_OPTIONS.map((opt) => (
                 <option key={opt.id} value={opt.id}>
-                  {opt.label}
+                  {opt.label.replace(/^\d+\s*-\s*/, '')}
                 </option>
               ))}
             </select>
@@ -271,10 +271,10 @@ export const RegressionForm: React.FC<RegressionFormProps> = ({
             )}
           </div>
 
-          {/* Admission Source ID */}
+          {/* Admission Source */}
           <div>
             <label htmlFor="reg-admission-source" className="block text-xs font-medium text-slate-300 mb-1.5">
-              Admission Source ID <span className="text-teal-400">*</span>
+              Where did the patient arrive from? <span className="text-teal-400">*</span>
             </label>
             <select
               id="reg-admission-source"
@@ -284,7 +284,7 @@ export const RegressionForm: React.FC<RegressionFormProps> = ({
             >
               {ADMISSION_SOURCE_OPTIONS.map((opt) => (
                 <option key={opt.id} value={opt.id}>
-                  {opt.label}
+                  {opt.label.replace(/^\d+\s*-\s*/, '')}
                 </option>
               ))}
             </select>
@@ -296,7 +296,7 @@ export const RegressionForm: React.FC<RegressionFormProps> = ({
           {/* Medical Specialty */}
           <div>
             <label htmlFor="reg-specialty" className="block text-xs font-medium text-slate-300 mb-1.5">
-              Medical Specialty
+              Primary admitting medical department
             </label>
             <select
               id="reg-specialty"
@@ -306,7 +306,7 @@ export const RegressionForm: React.FC<RegressionFormProps> = ({
             >
               {MEDICAL_SPECIALTY_OPTIONS.map((opt) => (
                 <option key={opt} value={opt}>
-                  {opt}
+                  {opt === 'Missing' ? 'General Medical Care' : opt}
                 </option>
               ))}
             </select>
@@ -315,7 +315,7 @@ export const RegressionForm: React.FC<RegressionFormProps> = ({
           {/* Payer Code */}
           <div>
             <label htmlFor="reg-payer-code" className="block text-xs font-medium text-slate-300 mb-1.5">
-              Payer Code
+              Insurance or Payment Coverage
             </label>
             <select
               id="reg-payer-code"
@@ -325,7 +325,7 @@ export const RegressionForm: React.FC<RegressionFormProps> = ({
             >
               {PAYER_CODE_OPTIONS.map((opt) => (
                 <option key={opt} value={opt}>
-                  {opt === 'Missing' ? 'Missing / Unspecified' : opt}
+                  {opt === 'Missing' ? 'Standard / Not Specified' : opt === 'MC' ? 'Medicare' : opt === 'MD' ? 'Medicaid' : opt === 'BC' ? 'Blue Cross / Blue Shield' : opt === 'SP' ? 'Self-Pay' : opt}
                 </option>
               ))}
             </select>
@@ -337,14 +337,14 @@ export const RegressionForm: React.FC<RegressionFormProps> = ({
       <div className="p-4 rounded-xl border border-slate-800 bg-slate-900/50 space-y-4">
         <div className="flex items-center gap-2 pb-2 border-b border-slate-800 text-sm font-semibold text-teal-300">
           <Activity className="w-4 h-4" />
-          <h3>3. Previous Healthcare Utilization (Past Year)</h3>
+          <h3>3. Past Visits & Healthcare History (Last 12 Months)</h3>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           {/* Outpatient */}
           <div>
             <label htmlFor="reg-outpatient" className="block text-xs font-medium text-slate-300 mb-1.5">
-              Outpatient Visits
+              Past outpatient clinic visits (last year)
             </label>
             <input
               id="reg-outpatient"
@@ -362,7 +362,7 @@ export const RegressionForm: React.FC<RegressionFormProps> = ({
           {/* Emergency */}
           <div>
             <label htmlFor="reg-emergency" className="block text-xs font-medium text-slate-300 mb-1.5">
-              Emergency Visits
+              Past emergency room visits (last year)
             </label>
             <input
               id="reg-emergency"
@@ -380,7 +380,7 @@ export const RegressionForm: React.FC<RegressionFormProps> = ({
           {/* Inpatient */}
           <div>
             <label htmlFor="reg-inpatient" className="block text-xs font-medium text-slate-300 mb-1.5">
-              Inpatient Visits (High impact)
+              Past hospital admissions (last year)
             </label>
             <input
               id="reg-inpatient"
@@ -402,15 +402,15 @@ export const RegressionForm: React.FC<RegressionFormProps> = ({
         <div className="flex items-center justify-between pb-2 border-b border-slate-800">
           <div className="flex items-center gap-2 text-sm font-semibold text-teal-300">
             <Stethoscope className="w-4 h-4" />
-            <h3>4. Diagnosis Information (ICD-9 Codes)</h3>
+            <h3>4. Health Conditions & Reason for Stay</h3>
           </div>
-          <span className="text-[11px] text-slate-400">e.g. 250.00, 401.9, 414.01</span>
+          <span className="text-[11px] text-slate-400">Diagnosis codes (e.g. 250.00, 401.9)</span>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <div>
             <label htmlFor="reg-diag1" className="block text-xs font-medium text-slate-300 mb-1.5">
-              Primary Diagnosis (diag_1) <span className="text-teal-400">*</span>
+              Primary reason for hospital admission <span className="text-teal-400">*</span>
             </label>
             <input
               id="reg-diag1"
@@ -425,7 +425,7 @@ export const RegressionForm: React.FC<RegressionFormProps> = ({
 
           <div>
             <label htmlFor="reg-diag2" className="block text-xs font-medium text-slate-300 mb-1.5">
-              Secondary Diagnosis (diag_2) <span className="text-teal-400">*</span>
+              Secondary health condition <span className="text-teal-400">*</span>
             </label>
             <input
               id="reg-diag2"
@@ -440,7 +440,7 @@ export const RegressionForm: React.FC<RegressionFormProps> = ({
 
           <div>
             <label htmlFor="reg-diag3" className="block text-xs font-medium text-slate-300 mb-1.5">
-              Additional Diagnosis (diag_3) <span className="text-teal-400">*</span>
+              Additional health condition <span className="text-teal-400">*</span>
             </label>
             <input
               id="reg-diag3"
@@ -456,16 +456,16 @@ export const RegressionForm: React.FC<RegressionFormProps> = ({
 
         {/* Quick ICD-9 reference chips */}
         <div className="pt-2">
-          <p className="text-[11px] text-slate-400 mb-1.5">Quick ICD-9 reference:</p>
+          <p className="text-[11px] text-slate-400 mb-1.5">Common conditions reference:</p>
           <div className="flex flex-wrap gap-1.5">
             {COMMON_ICD9_CODES.slice(0, 5).map((icd) => (
               <button
                 key={icd.code}
                 type="button"
                 onClick={() => handleChange('diag_1', icd.code)}
-                className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800/80 hover:bg-slate-700 text-slate-300 border border-slate-700/50"
+                className="text-[10px] px-2 py-0.5 rounded bg-slate-800/80 hover:bg-slate-700 text-slate-300 border border-slate-700/50 transition cursor-pointer"
               >
-                {icd.code} ({icd.label.split(' - ')[1].slice(0, 20)}...)
+                {icd.label.split(' - ')[1]} ({icd.code})
               </button>
             ))}
           </div>
@@ -486,16 +486,16 @@ export const RegressionForm: React.FC<RegressionFormProps> = ({
                 <div className="flex items-center gap-2">
                   <h4 className="font-semibold text-rose-300">
                     {apiError.status === 422
-                      ? 'Validation Error (HTTP 422)'
+                      ? 'Information Check Needed'
                       : apiError.status === 500
-                      ? 'Model Execution Error (HTTP 500)'
+                      ? 'Service Notice'
                       : apiError.isColdStart
-                      ? 'Prediction Service Waking Up'
-                      : 'Prediction Service Error'}
+                      ? 'Service Starting Up'
+                      : 'Service Notice'}
                   </h4>
                   {apiError.status && (
                     <span className="px-1.5 py-0.5 rounded bg-rose-950 text-rose-300 text-[10px] font-mono border border-rose-800">
-                      HTTP {apiError.status}
+                      Code {apiError.status}
                     </span>
                   )}
                 </div>
@@ -517,7 +517,7 @@ export const RegressionForm: React.FC<RegressionFormProps> = ({
               id="btn-retry-regression"
               onClick={handleSubmit}
               disabled={isLoading}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-rose-900/40 hover:bg-rose-900/60 border border-rose-700/60 text-rose-200 text-xs font-semibold transition shrink-0"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-rose-900/40 hover:bg-rose-900/60 border border-rose-700/60 text-rose-200 text-xs font-semibold transition shrink-0 cursor-pointer"
             >
               <RefreshCw className={`w-3.5 h-3.5 ${isLoading ? 'animate-spin' : ''}`} />
               <span>Retry</span>
@@ -531,9 +531,9 @@ export const RegressionForm: React.FC<RegressionFormProps> = ({
                 type="button"
                 id="btn-toggle-regression-error-details"
                 onClick={() => setShowErrorDetails(!showErrorDetails)}
-                className="flex items-center justify-between w-full text-[11px] font-mono text-rose-300/80 hover:text-rose-200 py-1"
+                className="flex items-center justify-between w-full text-[11px] font-mono text-rose-300/80 hover:text-rose-200 py-1 cursor-pointer"
               >
-                <span>Inspect Technical Error Diagnostics</span>
+                <span>View diagnostic details</span>
                 {showErrorDetails ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
               </button>
 
@@ -553,26 +553,26 @@ export const RegressionForm: React.FC<RegressionFormProps> = ({
           type="button"
           onClick={handleReset}
           disabled={isLoading}
-          className="px-4 py-2.5 rounded-xl border border-slate-800 text-slate-300 hover:text-white hover:bg-slate-900 text-xs font-semibold transition"
+          className="px-4 py-2.5 rounded-xl border border-slate-800 text-slate-300 hover:text-white hover:bg-slate-900 text-xs font-semibold transition cursor-pointer"
         >
-          Reset Fields
+          Reset Form
         </button>
 
         <button
           id="btn-submit-regression"
           type="submit"
           disabled={isLoading}
-          className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-gradient-to-r from-teal-500 to-cyan-600 hover:from-teal-400 hover:to-cyan-500 text-white font-semibold text-xs shadow-lg shadow-teal-500/20 transition disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
+          className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-gradient-to-r from-teal-500 to-cyan-600 hover:from-teal-400 hover:to-cyan-500 text-white font-semibold text-xs shadow-lg shadow-teal-500/20 transition disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 cursor-pointer"
         >
           {isLoading ? (
             <>
               <Loader2 className="w-4 h-4 animate-spin" />
-              <span>Querying XGBoost Regressor...</span>
+              <span>Calculating estimated hospital stay...</span>
             </>
           ) : (
             <>
               <Clock className="w-4 h-4" />
-              <span>Estimate Length of Stay</span>
+              <span>Estimate Hospital Stay</span>
             </>
           )}
         </button>

@@ -184,7 +184,7 @@ export const ClassificationForm: React.FC<ClassificationFormProps> = ({
       <div className="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 flex flex-wrap items-center justify-between gap-2.5">
         <div className="flex items-center gap-2 text-xs text-slate-300 font-medium">
           <Sparkles className="w-4 h-4 text-cyan-400 shrink-0" />
-          <span>Clinical Test Presets:</span>
+          <span>Load Example Patient:</span>
         </div>
         <div className="flex flex-wrap items-center gap-1.5">
           {SAMPLE_CLASSIFICATION_CASES.map((sample, idx) => (
@@ -195,17 +195,17 @@ export const ClassificationForm: React.FC<ClassificationFormProps> = ({
               className="text-[11px] font-medium px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700/60 transition"
               title={sample.description}
             >
-              Preset {idx + 1}: {sample.name.split(' ')[0]}
+              {sample.name}
             </button>
           ))}
           <button
             type="button"
             onClick={handleReset}
             className="text-[11px] font-medium px-2.5 py-1 rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800/80 transition flex items-center gap-1"
-            title="Reset form fields"
+            title="Clear all fields"
           >
             <RotateCcw className="w-3 h-3" />
-            Reset
+            Clear Form
           </button>
         </div>
       </div>
@@ -220,7 +220,7 @@ export const ClassificationForm: React.FC<ClassificationFormProps> = ({
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <div>
             <label htmlFor="cls-age" className="block text-xs font-medium text-slate-300 mb-1.5">
-              Age <span className="text-cyan-400">*</span>
+              Age Group <span className="text-cyan-400">*</span>
             </label>
             <select
               id="cls-age"
@@ -268,7 +268,7 @@ export const ClassificationForm: React.FC<ClassificationFormProps> = ({
             >
               {RACE_OPTIONS.map((opt) => (
                 <option key={opt} value={opt}>
-                  {opt === '?' ? '? (Unreported / Unknown)' : opt}
+                  {opt === '?' ? 'Not Specified' : opt}
                 </option>
               ))}
             </select>
@@ -277,17 +277,17 @@ export const ClassificationForm: React.FC<ClassificationFormProps> = ({
         </div>
       </div>
 
-      {/* Section 2: Admission Context */}
+      {/* Section 2: Hospital Stay Details */}
       <div className="p-4 rounded-xl border border-slate-800 bg-slate-900/50 space-y-4">
         <div className="flex items-center gap-2 pb-2 border-b border-slate-800 text-sm font-semibold text-cyan-300">
           <Building2 className="w-4 h-4" />
-          <h3>2. Admission Context</h3>
+          <h3>2. Hospital Stay Details</h3>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <div>
             <label htmlFor="cls-admission-type" className="block text-xs font-medium text-slate-300 mb-1.5">
-              Admission Type ID <span className="text-cyan-400">*</span>
+              How was the patient admitted? <span className="text-cyan-400">*</span>
             </label>
             <select
               id="cls-admission-type"
@@ -297,7 +297,7 @@ export const ClassificationForm: React.FC<ClassificationFormProps> = ({
             >
               {ADMISSION_TYPE_OPTIONS.map((opt) => (
                 <option key={opt.id} value={opt.id}>
-                  {opt.label}
+                  {opt.label.replace(/^\d+\s*-\s*/, '')}
                 </option>
               ))}
             </select>
@@ -308,7 +308,7 @@ export const ClassificationForm: React.FC<ClassificationFormProps> = ({
 
           <div>
             <label htmlFor="cls-admission-source" className="block text-xs font-medium text-slate-300 mb-1.5">
-              Admission Source ID <span className="text-cyan-400">*</span>
+              Where did the patient arrive from? <span className="text-cyan-400">*</span>
             </label>
             <select
               id="cls-admission-source"
@@ -318,7 +318,7 @@ export const ClassificationForm: React.FC<ClassificationFormProps> = ({
             >
               {ADMISSION_SOURCE_OPTIONS.map((opt) => (
                 <option key={opt.id} value={opt.id}>
-                  {opt.label}
+                  {opt.label.replace(/^\d+\s*-\s*/, '')}
                 </option>
               ))}
             </select>
@@ -329,7 +329,7 @@ export const ClassificationForm: React.FC<ClassificationFormProps> = ({
 
           <div>
             <label htmlFor="cls-time-hospital" className="block text-xs font-medium text-slate-300 mb-1.5">
-              Time in Hospital (1–14 days) <span className="text-cyan-400">*</span>
+              Days spent in hospital (1–14 days) <span className="text-cyan-400">*</span>
             </label>
             <input
               id="cls-time-hospital"
@@ -347,7 +347,7 @@ export const ClassificationForm: React.FC<ClassificationFormProps> = ({
 
           <div>
             <label htmlFor="cls-specialty" className="block text-xs font-medium text-slate-300 mb-1.5">
-              Medical Specialty
+              Primary admitting medical department
             </label>
             <select
               id="cls-specialty"
@@ -357,7 +357,7 @@ export const ClassificationForm: React.FC<ClassificationFormProps> = ({
             >
               {MEDICAL_SPECIALTY_OPTIONS.map((opt) => (
                 <option key={opt} value={opt}>
-                  {opt}
+                  {opt === 'Missing' ? 'General Medical Care' : opt}
                 </option>
               ))}
             </select>
@@ -369,13 +369,13 @@ export const ClassificationForm: React.FC<ClassificationFormProps> = ({
       <div className="p-4 rounded-xl border border-slate-800 bg-slate-900/50 space-y-4">
         <div className="flex items-center gap-2 pb-2 border-b border-slate-800 text-sm font-semibold text-cyan-300">
           <Activity className="w-4 h-4" />
-          <h3>3. Healthcare Utilization</h3>
+          <h3>3. Past Healthcare Visits & Prior Stays (Past Year)</h3>
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           <div>
             <label htmlFor="cls-outpatient" className="block text-xs font-medium text-slate-300 mb-1.5">
-              Outpatient Visits
+              Past outpatient clinic visits
             </label>
             <input
               id="cls-outpatient"
@@ -389,7 +389,7 @@ export const ClassificationForm: React.FC<ClassificationFormProps> = ({
 
           <div>
             <label htmlFor="cls-emergency" className="block text-xs font-medium text-slate-300 mb-1.5">
-              Emergency Visits
+              Past emergency room visits
             </label>
             <input
               id="cls-emergency"
@@ -403,7 +403,7 @@ export const ClassificationForm: React.FC<ClassificationFormProps> = ({
 
           <div>
             <label htmlFor="cls-inpatient" className="block text-xs font-medium text-slate-300 mb-1.5">
-              Inpatient Visits
+              Past hospital admissions
             </label>
             <input
               id="cls-inpatient"
@@ -417,7 +417,7 @@ export const ClassificationForm: React.FC<ClassificationFormProps> = ({
 
           <div>
             <label htmlFor="cls-num-diagnoses" className="block text-xs font-medium text-slate-300 mb-1.5">
-              Number of Diagnoses
+              Total conditions diagnosed
             </label>
             <input
               id="cls-num-diagnoses"
@@ -435,14 +435,14 @@ export const ClassificationForm: React.FC<ClassificationFormProps> = ({
       <div className="p-4 rounded-xl border border-slate-800 bg-slate-900/50 space-y-4">
         <div className="flex items-center gap-2 pb-2 border-b border-slate-800 text-sm font-semibold text-cyan-300">
           <Pill className="w-4 h-4" />
-          <h3>4. Clinical, Laboratory & Treatment Information</h3>
+          <h3>4. Clinical Diagnoses, Tests & Treatment Details</h3>
         </div>
 
         {/* Diagnosis ICD-9 Codes */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <div>
             <label htmlFor="cls-diag1" className="block text-xs font-medium text-slate-300 mb-1.5">
-              Primary Diagnosis (diag_1) <span className="text-cyan-400">*</span>
+              Primary health condition (diag_1) <span className="text-cyan-400">*</span>
             </label>
             <input
               id="cls-diag1"
@@ -456,7 +456,7 @@ export const ClassificationForm: React.FC<ClassificationFormProps> = ({
 
           <div>
             <label htmlFor="cls-diag2" className="block text-xs font-medium text-slate-300 mb-1.5">
-              Secondary Diagnosis (diag_2) <span className="text-cyan-400">*</span>
+              Secondary health condition (diag_2) <span className="text-cyan-400">*</span>
             </label>
             <input
               id="cls-diag2"
@@ -470,7 +470,7 @@ export const ClassificationForm: React.FC<ClassificationFormProps> = ({
 
           <div>
             <label htmlFor="cls-diag3" className="block text-xs font-medium text-slate-300 mb-1.5">
-              Additional Diagnosis (diag_3) <span className="text-cyan-400">*</span>
+              Additional health condition (diag_3) <span className="text-cyan-400">*</span>
             </label>
             <input
               id="cls-diag3"
@@ -487,7 +487,7 @@ export const ClassificationForm: React.FC<ClassificationFormProps> = ({
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
           <div>
             <label htmlFor="cls-num-meds" className="block text-xs font-medium text-slate-300 mb-1.5">
-              Number of Medications (num_medications)
+              Number of medications prescribed
             </label>
             <input
               id="cls-num-meds"
@@ -501,7 +501,7 @@ export const ClassificationForm: React.FC<ClassificationFormProps> = ({
 
           <div>
             <label htmlFor="cls-num-labs" className="block text-xs font-medium text-slate-300 mb-1.5">
-              Lab Procedures (num_lab_procedures)
+              Lab tests performed
             </label>
             <input
               id="cls-num-labs"
@@ -515,7 +515,7 @@ export const ClassificationForm: React.FC<ClassificationFormProps> = ({
 
           <div>
             <label htmlFor="cls-num-proc" className="block text-xs font-medium text-slate-300 mb-1.5">
-              Procedures (num_procedures)
+              Medical procedures performed
             </label>
             <input
               id="cls-num-proc"
@@ -532,7 +532,7 @@ export const ClassificationForm: React.FC<ClassificationFormProps> = ({
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 pt-2">
           <div>
             <label htmlFor="cls-max-glu" className="block text-xs font-medium text-slate-300 mb-1.5">
-              Max Glucose Serum
+              Blood sugar test (Glucose Serum)
             </label>
             <select
               id="cls-max-glu"
@@ -542,7 +542,7 @@ export const ClassificationForm: React.FC<ClassificationFormProps> = ({
             >
               {MAX_GLU_SERUM_OPTIONS.map((opt) => (
                 <option key={opt} value={opt}>
-                  {opt}
+                  {opt === 'None' ? 'Not Tested' : opt === 'Norm' ? 'Normal Range' : opt}
                 </option>
               ))}
             </select>
@@ -550,7 +550,7 @@ export const ClassificationForm: React.FC<ClassificationFormProps> = ({
 
           <div>
             <label htmlFor="cls-a1c" className="block text-xs font-medium text-slate-300 mb-1.5">
-              A1C Result (A1Cresult)
+              HbA1c test (Long-term glycemic)
             </label>
             <select
               id="cls-a1c"
@@ -560,7 +560,7 @@ export const ClassificationForm: React.FC<ClassificationFormProps> = ({
             >
               {A1C_RESULT_OPTIONS.map((opt) => (
                 <option key={opt} value={opt}>
-                  {opt}
+                  {opt === 'None' ? 'Not Tested' : opt === 'Norm' ? 'Normal (<7%)' : opt}
                 </option>
               ))}
             </select>
@@ -568,7 +568,7 @@ export const ClassificationForm: React.FC<ClassificationFormProps> = ({
 
           <div>
             <label htmlFor="cls-insulin" className="block text-xs font-medium text-slate-300 mb-1.5">
-              Insulin Administration
+              Insulin administration
             </label>
             <select
               id="cls-insulin"
@@ -578,7 +578,7 @@ export const ClassificationForm: React.FC<ClassificationFormProps> = ({
             >
               {INSULIN_OPTIONS.map((opt) => (
                 <option key={opt} value={opt}>
-                  {opt}
+                  {opt === 'No' ? 'No Insulin' : opt === 'Steady' ? 'Maintained Steady' : opt === 'Up' ? 'Dose Increased' : 'Dose Decreased'}
                 </option>
               ))}
             </select>
@@ -586,7 +586,7 @@ export const ClassificationForm: React.FC<ClassificationFormProps> = ({
 
           <div>
             <label htmlFor="cls-diabetes-med" className="block text-xs font-medium text-slate-300 mb-1.5">
-              Diabetes Med (diabetesMed)
+              Diabetes medication prescribed?
             </label>
             <select
               id="cls-diabetes-med"
@@ -596,7 +596,7 @@ export const ClassificationForm: React.FC<ClassificationFormProps> = ({
             >
               {DIABETES_MED_OPTIONS.map((opt) => (
                 <option key={opt} value={opt}>
-                  {opt}
+                  {opt === 'Yes' ? 'Yes, Prescribed' : 'No Medication'}
                 </option>
               ))}
             </select>
@@ -604,7 +604,7 @@ export const ClassificationForm: React.FC<ClassificationFormProps> = ({
 
           <div>
             <label htmlFor="cls-change" className="block text-xs font-medium text-slate-300 mb-1.5">
-              Medication Change (change)
+              Medication change during stay?
             </label>
             <select
               id="cls-change"
@@ -614,7 +614,7 @@ export const ClassificationForm: React.FC<ClassificationFormProps> = ({
             >
               {CHANGE_OPTIONS.map((opt) => (
                 <option key={opt} value={opt}>
-                  {opt === 'Ch' ? 'Ch (Changed)' : 'No (Unchanged)'}
+                  {opt === 'Ch' ? 'Yes, Dosage Changed' : 'No Change'}
                 </option>
               ))}
             </select>
@@ -636,16 +636,16 @@ export const ClassificationForm: React.FC<ClassificationFormProps> = ({
                 <div className="flex items-center gap-2">
                   <h4 className="font-semibold text-rose-300">
                     {apiError.status === 422
-                      ? 'Validation Error (HTTP 422)'
+                      ? 'Information Check Needed'
                       : apiError.status === 500
-                      ? 'Model Execution Error (HTTP 500)'
+                      ? 'Service Notice'
                       : apiError.isColdStart
-                      ? 'Prediction Service Waking Up'
-                      : 'Prediction Service Error'}
+                      ? 'Service Starting Up'
+                      : 'Service Notice'}
                   </h4>
                   {apiError.status && (
                     <span className="px-1.5 py-0.5 rounded bg-rose-950 text-rose-300 text-[10px] font-mono border border-rose-800">
-                      HTTP {apiError.status}
+                      Code {apiError.status}
                     </span>
                   )}
                 </div>
@@ -667,7 +667,7 @@ export const ClassificationForm: React.FC<ClassificationFormProps> = ({
               id="btn-retry-classification"
               onClick={handleSubmit}
               disabled={isLoading}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-rose-900/40 hover:bg-rose-900/60 border border-rose-700/60 text-rose-200 text-xs font-semibold transition shrink-0"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-rose-900/40 hover:bg-rose-900/60 border border-rose-700/60 text-rose-200 text-xs font-semibold transition shrink-0 cursor-pointer"
             >
               <RefreshCw className={`w-3.5 h-3.5 ${isLoading ? 'animate-spin' : ''}`} />
               <span>Retry</span>
@@ -681,9 +681,9 @@ export const ClassificationForm: React.FC<ClassificationFormProps> = ({
                 type="button"
                 id="btn-toggle-classification-error-details"
                 onClick={() => setShowErrorDetails(!showErrorDetails)}
-                className="flex items-center justify-between w-full text-[11px] font-mono text-rose-300/80 hover:text-rose-200 py-1"
+                className="flex items-center justify-between w-full text-[11px] font-mono text-rose-300/80 hover:text-rose-200 py-1 cursor-pointer"
               >
-                <span>Inspect Technical Error Diagnostics</span>
+                <span>View diagnostic details</span>
                 {showErrorDetails ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
               </button>
 
@@ -703,26 +703,26 @@ export const ClassificationForm: React.FC<ClassificationFormProps> = ({
           type="button"
           onClick={handleReset}
           disabled={isLoading}
-          className="px-4 py-2.5 rounded-xl border border-slate-800 text-slate-300 hover:text-white hover:bg-slate-900 text-xs font-semibold transition"
+          className="px-4 py-2.5 rounded-xl border border-slate-800 text-slate-300 hover:text-white hover:bg-slate-900 text-xs font-semibold transition cursor-pointer"
         >
-          Reset Fields
+          Reset Form
         </button>
 
         <button
           id="btn-submit-classification"
           type="submit"
           disabled={isLoading}
-          className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-semibold text-xs shadow-lg shadow-cyan-600/20 transition disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
+          className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-semibold text-xs shadow-lg shadow-cyan-600/20 transition disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 cursor-pointer"
         >
           {isLoading ? (
             <>
               <Loader2 className="w-4 h-4 animate-spin" />
-              <span>Querying XGBoost Classifier...</span>
+              <span>Evaluating readmission risk...</span>
             </>
           ) : (
             <>
               <ShieldAlert className="w-4 h-4" />
-              <span>Evaluate 30-Day Readmission Risk</span>
+              <span>Assess Readmission Risk</span>
             </>
           )}
         </button>

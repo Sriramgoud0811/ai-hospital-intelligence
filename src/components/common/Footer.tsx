@@ -46,7 +46,7 @@ export const Footer: React.FC = () => {
             <div className="flex items-center gap-3 pt-2">
               <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 text-[11px] font-mono text-cyan-400">
                 <Server className="w-3 h-3 text-teal-400" />
-                FastAPI Clinical Backend
+                Secure Clinical Backend
               </span>
               <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 text-[11px] font-mono text-cyan-400">
                 <Code2 className="w-3 h-3 text-cyan-400" />
@@ -58,7 +58,7 @@ export const Footer: React.FC = () => {
           {/* Col 3: Clinical Dashboard */}
           <div>
             <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-200 mb-3">
-              Patient Care Dashboard
+              Patient Care Tools
             </h3>
             <ul className="space-y-2 text-xs">
               <li>
@@ -68,12 +68,12 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <Link to="/predict/length-of-stay" className="hover:text-cyan-400 transition">
-                  Length of Stay Calculator
+                  Hospital Stay Estimate
                 </Link>
               </li>
               <li>
                 <Link to="/predict/readmission" className="hover:text-cyan-400 transition">
-                  30-Day Readmission Risk
+                  30-Day Readmission Assessment
                 </Link>
               </li>
               <li>
@@ -89,7 +89,7 @@ export const Footer: React.FC = () => {
                   className="hover:text-cyan-300 transition text-left cursor-pointer flex items-center gap-1.5 text-teal-300"
                 >
                   <Sparkles className="w-3.5 h-3.5 text-teal-400" />
-                  <span>Nova AI Assistant (24/7)</span>
+                  <span>Nova Clinical Assistant (24/7)</span>
                 </button>
               </li>
             </ul>
@@ -108,17 +108,17 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <Link to="/about" className="hover:text-cyan-400 transition">
-                  About Us
+                  About the Platform
                 </Link>
               </li>
               <li>
                 <Link to="/contact" className="hover:text-cyan-400 transition">
-                  Contact Us
+                  Contact Care Team
                 </Link>
               </li>
               <li>
                 <Link to="/history" className="hover:text-cyan-400 transition">
-                  Patient Records History
+                  Assessment History
                 </Link>
               </li>
             </ul>
@@ -127,7 +127,7 @@ export const Footer: React.FC = () => {
           {/* Col 5: External Links & Recruiter Resources */}
           <div>
             <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-200 mb-3">
-              Portfolio & APIs
+              System & Technical APIs
             </h3>
             <ul className="space-y-2 text-xs">
               <li>
@@ -137,7 +137,7 @@ export const Footer: React.FC = () => {
                   rel="noopener noreferrer"
                   className="flex items-center gap-1 hover:text-cyan-400 transition text-slate-300"
                 >
-                  <span>FastAPI Swagger UI</span>
+                  <span>Backend API Documentation</span>
                   <ExternalLink className="w-3 h-3 text-slate-500" />
                 </a>
               </li>
@@ -148,18 +148,18 @@ export const Footer: React.FC = () => {
                   rel="noopener noreferrer"
                   className="flex items-center gap-1 hover:text-cyan-400 transition text-slate-300"
                 >
-                  <span>OpenAPI Spec JSON</span>
+                  <span>OpenAPI Schema JSON</span>
                   <ExternalLink className="w-3 h-3 text-slate-500" />
                 </a>
               </li>
               <li>
                 <Link to="/about" className="hover:text-cyan-400 transition">
-                  About Developer
+                  About Developer & Architecture
                 </Link>
               </li>
               <li>
                 <Link to="/contact" className="hover:text-cyan-400 transition">
-                  Contact & Inquiries
+                  Clinical Inquiries
                 </Link>
               </li>
             </ul>
@@ -168,7 +168,7 @@ export const Footer: React.FC = () => {
 
         {/* Bottom Bar */}
         <div className="mt-10 pt-6 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-3">
-          <p>© {currentYear} AI Hospital Intelligence. Engineered for machine learning demonstration.</p>
+          <p>© {currentYear} AI Hospital Intelligence. Designed for clinical decision support demonstration.</p>
           <div className="flex items-center gap-4 text-xs">
             <span>Synthetic / anonymized retrospective data</span>
             <span>•</span>

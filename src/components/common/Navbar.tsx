@@ -81,12 +81,12 @@ export const Navbar: React.FC = () => {
             <div className="flex flex-col">
               <span className="font-bold text-base tracking-tight text-white flex items-center gap-1.5 font-['Plus_Jakarta_Sans']">
                 AI Hospital Intelligence
-                <span className="hidden md:inline-flex items-center text-[10px] font-medium tracking-wide uppercase px-1.5 py-0.5 rounded bg-cyan-950/80 text-cyan-400 border border-cyan-800/50">
-                  Live Care
+                <span className="hidden md:inline-flex items-center text-[10px] font-medium tracking-wide uppercase px-1.5 py-0.5 rounded bg-teal-950/80 text-teal-400 border border-teal-800/50">
+                  Clinical Support
                 </span>
               </span>
               <span className="text-[10px] text-slate-400 -mt-0.5 hidden sm:block">
-                Clinical Risk & Stay Duration Platform
+                Hospital Decision Support & Patient Care Platform
               </span>
             </div>
           </Link>
@@ -186,7 +186,7 @@ export const Navbar: React.FC = () => {
                   className="flex items-center gap-1.5 text-xs font-semibold px-3.5 py-1.5 rounded-lg bg-gradient-to-r from-teal-500 to-cyan-600 hover:from-teal-400 hover:to-cyan-500 text-white shadow-[0_0_12px_rgba(20,184,166,0.3)] transition focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
                 >
                   <Sparkles className="w-3.5 h-3.5" />
-                  <span>Launch Studio</span>
+                  <span>Healthcare Tools</span>
                 </Link>
               </div>
             )}
@@ -257,7 +257,7 @@ export const Navbar: React.FC = () => {
               className="w-full flex items-center justify-center gap-2 py-2.5 rounded-lg bg-gradient-to-r from-teal-500 to-cyan-600 text-white font-semibold text-sm shadow-md"
             >
               <Sparkles className="w-4 h-4" />
-              Launch Prediction Studio
+              Explore Healthcare Tools
             </Link>
 
             {!user ? (
